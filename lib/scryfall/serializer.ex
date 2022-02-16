@@ -7,10 +7,10 @@ defmodule Scryfall.Serializer do
   @spec from_json(map, struct) :: Scryfall.List.t(struct)
   def from_json(raw_content, start) do
     %Scryfall.List{
-      object: Map.get(raw_content, "object"),
-      has_more: Map.get(raw_content, "has_more"),
-      next_page: Map.get(raw_content, "next_page"),
-      data: Map.get(raw_content, "data") |> serialize_data(start),
+      object: get(raw_content, "object"),
+      has_more: get(raw_content, "has_more"),
+      next_page: get(raw_content, "next_page"),
+      data: get(raw_content, "data") |> serialize_data(start),
     }
   end
 
@@ -22,7 +22,8 @@ defmodule Scryfall.Serializer do
 
   @spec build_obj(map, struct) :: struct
   defp build_obj(raw_map, base_struct) do
-    Enum.zip(keys(raw_map), values(raw_map)) |> Enum.reduce(base_struct, &attach_field/2)
+    Enum.zip(keys(raw_map), values(raw_map))
+    |> Enum.reduce(base_struct, &attach_field/2)
   end
 
   @spec attach_field(tuple, struct) :: struct
