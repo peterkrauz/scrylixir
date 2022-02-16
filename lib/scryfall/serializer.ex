@@ -1,21 +1,24 @@
 defmodule Scryfall.Serializer do
-  import Map
+  import Map, only: [keys: 1, values: 1]
   @moduledoc """
   TODO
   """
 
-  @spec from_json(map, struct) :: Scryfall.List.t(struct)
-  def from_json(raw_content, start) do
+  @spec from_json(map, to: struct) :: Scryfall.List.t(struct)
+  def from_json(%{"object" => object, "has_more" => has_more, "data" => data}, to: base_struct) do
     %Scryfall.List{
-      object: get(raw_content, "object"),
-      has_more: get(raw_content, "has_more"),
-      next_page: get(raw_content, "next_page"),
-      data: get(raw_content, "data") |> serialize_data(start),
+      object: object,
+      has_more: has_more,
+      next_page: nil,
+      data: serialize_data(data, base_struct),
     }
   end
 
+  @spec from_json(map, to: struct) :: struct
+  def from_json(raw_map, to: base_struct), do: build_obj(raw_map, base_struct)
+
   @spec serialize_data(list, struct) :: list
-  def serialize_data(raw_content, base_struct) do
+  defp serialize_data(raw_content, base_struct) do
     raw_content
     |> Enum.map(fn raw_data -> build_obj(raw_data, base_struct) end)
   end

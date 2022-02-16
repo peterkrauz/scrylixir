@@ -12,7 +12,7 @@ defmodule Scryfall.List do
   @type t(any) :: %__MODULE__{
     object: String.t(),
     has_more: boolean,
-    next_page: String.t(),
+    next_page: String.t() | nil,
     data: [any],
   }
 

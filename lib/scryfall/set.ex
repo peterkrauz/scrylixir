@@ -60,9 +60,13 @@ defmodule Scryfall.Set do
 
   @base_url "https://api.scryfall.com/sets"
 
-  @spec list() :: Scryfall.List.t(t) | Scryfall.Error.t()
+  @spec list() :: Scryfall.List.t(t)
   def list() do
-    do_request(@base_url) |> from_json(%__MODULE__{})
+    do_request(@base_url) |> from_json(to: %__MODULE__{})
   end
+
+  @spec get_by([id: String.t(), code: String.t()]) :: struct
+  def get_by(id: id), do: do_request(@base_url <> "/#{id}") |> from_json(to: %__MODULE__{})
+  def get_by(code: code), do: do_request(@base_url <> "/#{code}") |> from_json(to: %__MODULE__{})
 
 end
