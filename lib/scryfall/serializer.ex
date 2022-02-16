@@ -4,7 +4,7 @@ defmodule Scryfall.Serializer do
   TODO
   """
 
-  @spec from_json(map, to: struct) :: Scryfall.List.t(struct)
+  @spec from_json(map, to: struct) :: struct
   def from_json(%{"object" => object, "has_more" => has_more, "data" => data}, to: base_struct) do
     %Scryfall.List{
       object: object,
@@ -14,7 +14,6 @@ defmodule Scryfall.Serializer do
     }
   end
 
-  @spec from_json(map, to: struct) :: struct
   def from_json(raw_map, to: base_struct), do: build_obj(raw_map, base_struct)
 
   @spec serialize_data(list, struct) :: list
