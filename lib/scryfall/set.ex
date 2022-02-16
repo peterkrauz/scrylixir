@@ -1,5 +1,4 @@
 defmodule Scryfall.Set do
-  import Map
   import Scryfall.Request
   import Scryfall.Serializer
   @moduledoc """
@@ -31,6 +30,7 @@ defmodule Scryfall.Set do
     :foil_only,
     :block_code,
     :block,
+    :parent_set_code,
     :icon_svg_uri
   ]
 
@@ -54,24 +54,15 @@ defmodule Scryfall.Set do
     foil_only: boolean,
     block_code: String.t(),
     block: String.t(),
-    icon_svg_uri: String.t()
+    icon_svg_uri: String.t(),
+    parent_set_code: String.t(),
   }
 
   @base_url "https://api.scryfall.com/sets"
 
   @spec list() :: Scryfall.List.t(t) | Scryfall.Error.t()
   def list() do
-    do_request(@base_url) |> from_list(&map_to_set/1)
+    do_request(@base_url) |> from_json(%__MODULE__{})
   end
-
-  @spec map_to_set(any) :: t
-  def map_to_set(raw_map) do
-    Enum.zip(keys(raw_map), values(raw_map))
-    |> Enum.reduce(%__MODULE__{}, &attach_field/2)
-  end
-
-  @spec attach_field(tuple, t) :: t
-  defp attach_field({"parent_set_code", _}, instance), do: instance
-  defp attach_field({field, value}, instance), do: %{instance | String.to_atom(field) => value}
 
 end
