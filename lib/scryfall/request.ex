@@ -6,7 +6,9 @@ defmodule Scryfall.Request do
 
   @spec do_request(String.t()) :: map() | list()
   def do_request(url) do
-    HTTPoison.get!(url) |> Map.get(:body)
+    HTTPoison.get!(url)
+    |> Map.get(:body)
+    |> Poison.decode!
   end
 
 end

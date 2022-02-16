@@ -1,4 +1,5 @@
 defmodule Scryfall.Set do
+  import Map
   import Scryfall.Request
   import Scryfall.Serializer
   @moduledoc """
@@ -60,7 +61,17 @@ defmodule Scryfall.Set do
 
   @spec list() :: Scryfall.List.t(t) | Scryfall.Error.t()
   def list() do
-    do_request(@base_url) |> from_list()
+    do_request(@base_url) |> from_list(&map_to_set/1)
   end
+
+  @spec map_to_set(any) :: t
+  def map_to_set(raw_map) do
+    Enum.zip(keys(raw_map), values(raw_map))
+    |> Enum.reduce(%__MODULE__{}, &attach_field/2)
+  end
+
+  @spec attach_field(tuple, t) :: t
+  defp attach_field({"parent_set_code", _}, instance), do: instance
+  defp attach_field({field, value}, instance), do: %{instance | String.to_atom(field) => value}
 
 end
