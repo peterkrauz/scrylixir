@@ -1,4 +1,4 @@
-name: Scrylixir
+name: build
 
 on:
   push:
