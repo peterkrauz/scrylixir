@@ -9,15 +9,13 @@ defmodule Scryfall.Error do
 
   @type t :: %__MODULE__{
           error: String.t(),
-          base_data: any,
           details: list
         }
 
-  @spec from(struct, any) :: t
-  def from(error, raw_data) do
+  @spec from(struct) :: t
+  def from(error) do
     %Scryfall.Error{
       error: "KeyError",
-      base_data: raw_data,
       details: Enum.zip(keys(error), values(error))
     }
   end

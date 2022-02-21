@@ -8,7 +8,7 @@ defmodule Scryfall.Resource do
       import Scryfall.Request
       import Scryfall.Serializer
 
-      @spec fetch_resource(url: String.t(), to: struct) :: list | struct
+      @spec fetch_resource(url: String.t(), to: struct) :: struct
       defp fetch_resource(url: url, to: module) do
         do_request(url) |> from_json(to: module)
       end

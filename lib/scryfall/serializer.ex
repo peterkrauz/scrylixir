@@ -6,7 +6,7 @@ defmodule Scryfall.Serializer do
   struct-building used by other API modules.
   """
 
-  @spec from_json(map, to: struct) :: struct
+  @spec from_json(map, to: struct) :: struct | Scryfall.Error.t()
   def from_json(%{"object" => object, "has_more" => has_more, "data" => data}, to: base_struct) do
     %Scryfall.List{
       object: object,
@@ -14,16 +14,20 @@ defmodule Scryfall.Serializer do
       next_page: nil,
       data: data |> Enum.map(fn raw_data -> build_obj(raw_data, base_struct) end)
     }
+  rescue
+    e -> Scryfall.Error.from(e)
   end
 
-  def from_json(raw_map, to: base_struct), do: build_obj(raw_map, base_struct)
+  def from_json(raw_map, to: base_struct) do
+    build_obj(raw_map, base_struct)
+  rescue
+    e -> Scryfall.Error.from(e)
+  end
 
   @spec build_obj(map, struct) :: struct
   defp build_obj(raw_map, base_struct) do
     Enum.zip(keys(raw_map), values(raw_map))
     |> Enum.reduce(base_struct, &attach_field/2)
-  rescue
-    e -> Scryfall.Error.from(e, raw_map)
   end
 
   @spec attach_field(tuple, struct) :: struct
