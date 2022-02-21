@@ -2,8 +2,6 @@
 
 An Elixir wrapper for the [Scryfall API](https://scryfall.com/docs/api/).
 
-### Status
-
 ![build](https://github.com/peterkrauz/scrylixir/actions/workflows/build.yml/badge.svg)
 
 ## Installation
