@@ -64,6 +64,6 @@ defmodule Scryfall.Set do
   def list, do: fetch_resource(url: base_url(), to: %__MODULE__{})
 
   @spec get_by(id: String.t(), code: String.t()) :: t
-  def get_by(id: id), do: fetch_resource(url: base_url()<> "/#{id}", to: %__MODULE__{})
-  def get_by(code: code), do: fetch_resource(url: base_url()<> "/#{code}", to: %__MODULE__{})
+  def get_by(id: id), do: fetch_resource(url: base_url() <> "/#{id}", to: %__MODULE__{})
+  def get_by(code: code), do: fetch_resource(url: base_url() <> "/#{code}", to: %__MODULE__{})
 end

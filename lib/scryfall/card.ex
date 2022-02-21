@@ -93,7 +93,7 @@ defmodule Scryfall.Card do
     foil: nil,
     oversized: false,
     legalities: %{},
-    border_color: nil,
+    border_color: nil
   ]
 
   @type colors :: list(String.t())
@@ -152,7 +152,7 @@ defmodule Scryfall.Card do
           frame_effects: list,
           frame: String.t(),
           full_art: boolean,
-          games: list(String.t),
+          games: list(String.t()),
           highres_image: boolean,
           illustration_id: String.t(),
           image_status: String.t(),
