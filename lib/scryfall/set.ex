@@ -1,6 +1,5 @@
 defmodule Scryfall.Set do
-  import Scryfall.Request
-  import Scryfall.Serializer
+  use Scryfall.Resource
 
   @moduledoc """
 
@@ -59,14 +58,12 @@ defmodule Scryfall.Set do
           parent_set_code: String.t()
         }
 
-  @base_url "https://api.scryfall.com/sets"
+  defp base_url, do: "https://api.scryfall.com/sets"
 
   @spec list :: Scryfall.List.t(t)
-  def list do
-    do_request(@base_url) |> from_json(to: %__MODULE__{})
-  end
+  def list, do: fetch_resource(url: base_url(), to: %__MODULE__{})
 
   @spec get_by(id: String.t(), code: String.t()) :: t
-  def get_by(id: id), do: do_request(@base_url <> "/#{id}") |> from_json(to: %__MODULE__{})
-  def get_by(code: code), do: do_request(@base_url <> "/#{code}") |> from_json(to: %__MODULE__{})
+  def get_by(id: id), do: fetch_resource(url: base_url()<> "/#{id}", to: %__MODULE__{})
+  def get_by(code: code), do: fetch_resource(url: base_url()<> "/#{code}", to: %__MODULE__{})
 end

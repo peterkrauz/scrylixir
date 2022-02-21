@@ -185,10 +185,8 @@ defmodule Scryfall.Card do
           foil: boolean
         }
 
-  @base_url "https://api.scryfall.com/cards"
+  defp base_url, do: "https://api.scryfall.com/cards"
 
   @spec random :: t
-  def random do
-    fetch_resource(url: @base_url <> "/random", to: %__MODULE__{})
-  end
+  def random, do: fetch_resource(url: base_url() <> "/random", to: %__MODULE__{})
 end
