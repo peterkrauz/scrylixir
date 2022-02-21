@@ -20,12 +20,10 @@ defmodule Scryfall.Serializer do
 
   @spec build_obj(map, struct) :: struct
   defp build_obj(raw_map, base_struct) do
-    try do
-      Enum.zip(keys(raw_map), values(raw_map))
-      |> Enum.reduce(base_struct, &attach_field/2)
-    rescue
-      e -> Scryfall.Error.from(e, raw_map)
-    end
+    Enum.zip(keys(raw_map), values(raw_map))
+    |> Enum.reduce(base_struct, &attach_field/2)
+  rescue
+    e -> Scryfall.Error.from(e, raw_map)
   end
 
   @spec attach_field(tuple, struct) :: struct
