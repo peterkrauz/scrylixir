@@ -35,7 +35,7 @@ defmodule Scrylixir.MixProject do
       {:httpoison, "~> 1.8"},
       {:poison, "~> 5.0"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
+      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
 end
