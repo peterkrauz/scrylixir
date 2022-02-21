@@ -1,4 +1,4 @@
-defmodule Scrylixir.MixProject do
+defmodule Scryfall.MixProject do
   use Mix.Project
 
   def project do
