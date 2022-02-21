@@ -66,7 +66,7 @@ defmodule Scryfall.Set do
     do_request(@base_url) |> from_json(to: %__MODULE__{})
   end
 
-  @spec get_by(id: String.t(), code: String.t()) :: t()
+  @spec get_by(id: String.t(), code: String.t()) :: t
   def get_by(id: id), do: do_request(@base_url <> "/#{id}") |> from_json(to: %__MODULE__{})
   def get_by(code: code), do: do_request(@base_url <> "/#{code}") |> from_json(to: %__MODULE__{})
 end
