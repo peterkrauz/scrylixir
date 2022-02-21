@@ -10,10 +10,9 @@ defmodule Scryfall.List do
   defstruct [:object, :has_more, :next_page, :data]
 
   @type t(any) :: %__MODULE__{
-    object: String.t(),
-    has_more: boolean,
-    next_page: String.t() | nil,
-    data: [any],
-  }
-
+          object: String.t(),
+          has_more: boolean,
+          next_page: String.t() | nil,
+          data: [any]
+        }
 end

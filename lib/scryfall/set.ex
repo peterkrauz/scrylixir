@@ -1,6 +1,7 @@
 defmodule Scryfall.Set do
   import Scryfall.Request
   import Scryfall.Serializer
+
   @moduledoc """
 
   A Set object represents a group of related Magic cards. All Card objects on Scryfall belong to exactly one set.
@@ -35,28 +36,28 @@ defmodule Scryfall.Set do
   ]
 
   @type t :: %__MODULE__{
-    id: String.t(),
-    object: String.t(),
-    code: String.t(),
-    mtgo_code: String.t(),
-    arena_code: String.t(),
-    tcgplayer_id: integer,
-    name: String.t(),
-    uri: String.t(),
-    scryfall_uri: String.t(),
-    search_uri: String.t(),
-    released_at: String.t(),
-    set_type: String.t(),
-    card_count: integer,
-    printed_size: integer,
-    digital: boolean,
-    nonfoil_only: boolean,
-    foil_only: boolean,
-    block_code: String.t(),
-    block: String.t(),
-    icon_svg_uri: String.t(),
-    parent_set_code: String.t(),
-  }
+          id: String.t(),
+          object: String.t(),
+          code: String.t(),
+          mtgo_code: String.t(),
+          arena_code: String.t(),
+          tcgplayer_id: integer,
+          name: String.t(),
+          uri: String.t(),
+          scryfall_uri: String.t(),
+          search_uri: String.t(),
+          released_at: String.t(),
+          set_type: String.t(),
+          card_count: integer,
+          printed_size: integer,
+          digital: boolean,
+          nonfoil_only: boolean,
+          foil_only: boolean,
+          block_code: String.t(),
+          block: String.t(),
+          icon_svg_uri: String.t(),
+          parent_set_code: String.t()
+        }
 
   @base_url "https://api.scryfall.com/sets"
 
@@ -65,8 +66,7 @@ defmodule Scryfall.Set do
     do_request(@base_url) |> from_json(to: %__MODULE__{})
   end
 
-  @spec get_by([id: String.t(), code: String.t()]) :: t()
+  @spec get_by(id: String.t(), code: String.t()) :: t()
   def get_by(id: id), do: do_request(@base_url <> "/#{id}") |> from_json(to: %__MODULE__{})
   def get_by(code: code), do: do_request(@base_url <> "/#{code}") |> from_json(to: %__MODULE__{})
-
 end

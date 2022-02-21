@@ -1,5 +1,6 @@
 defmodule Scryfall.Serializer do
   import Map, only: [keys: 1, values: 1]
+
   @moduledoc """
   TODO
   """
@@ -10,7 +11,7 @@ defmodule Scryfall.Serializer do
       object: object,
       has_more: has_more,
       next_page: nil,
-      data: serialize_data(data, base_struct),
+      data: serialize_data(data, base_struct)
     }
   end
 
@@ -29,6 +30,6 @@ defmodule Scryfall.Serializer do
   end
 
   @spec attach_field(tuple, struct) :: struct
-  defp attach_field({field, value}, base_struct), do: %{base_struct | String.to_atom(field) => value}
-
+  defp attach_field({field, value}, base_struct),
+    do: %{base_struct | String.to_atom(field) => value}
 end

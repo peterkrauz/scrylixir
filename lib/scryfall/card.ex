@@ -1,6 +1,7 @@
 defmodule Scryfall.Card do
   import Scryfall.Request
   import Scryfall.Serializer
+
   @moduledoc """
 
   Card objects represent individual Magic: The Gathering cards that players could obtain

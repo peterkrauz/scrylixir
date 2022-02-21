@@ -8,7 +8,6 @@ defmodule Scryfall.Request do
   def do_request(url) do
     HTTPoison.get!(url)
     |> Map.get(:body)
-    |> Poison.decode!
+    |> Poison.decode!()
   end
-
 end
