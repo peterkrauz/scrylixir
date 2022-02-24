@@ -15,8 +15,6 @@ jobs:
     container: python:3.7-slim
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
 
       - name: Search linear ticket
         uses: peterkrauz/search-linear-ticket-action@v1.0.1
