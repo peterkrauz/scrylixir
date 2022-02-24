@@ -35,7 +35,8 @@ jobs:
         run: |
           echo $PULL_REQUEST_NUMBER
           echo $REPOSITORY_NAME
-          echo $STUFF
+          ev=$STUFF["event"]
+          echo ev
 
       # - name: Dump more stuff
       #   run: echo '${{ toJSON($GITHUB_REF) }}'
