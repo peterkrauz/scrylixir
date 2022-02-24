@@ -26,6 +26,7 @@ jobs:
       - name: Print stuff
         run: |
           echo $PR_DETAILS
+          echo $GITHUB_REF
 
-      # - name: Dump more stuff
-      #   run: echo '${{ toJSON($GITHUB_REF) }}'
+      - name: Search linear ticket
+        uses: peterkrauz/search-linear-ticket-action@v0.0.2
