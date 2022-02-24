@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: print
-        run: echo '${{ toJSON(github.event) }}'
+        run: echo '${{ toJSON(github) }}'
 
       - name: Search linear ticket
         uses: peterkrauz/search-linear-ticket-action@v0.0.6
