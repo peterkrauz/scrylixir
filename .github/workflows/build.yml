@@ -39,8 +39,8 @@ jobs:
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
 
-      - name: Dump more stuff
-        run: echo '${{ toJSON($GITHUB_REF) }}'
+      # - name: Dump more stuff
+      #   run: echo '${{ toJSON($GITHUB_REF) }}'
 
   test:
     name: build & cqa
