@@ -18,12 +18,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Dump GitHub context
-        id: github_context_step
-        run: echo '${{ toJSON(github) }}'
-
       - name: Search linear ticket
-        uses: peterkrauz/search-linear-ticket-action@v0.0.5
+        uses: peterkrauz/search-linear-ticket-action@v0.0.6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EVENT_DETAILS: ${{ toJSON(github.event) }}
