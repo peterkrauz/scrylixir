@@ -8,7 +8,7 @@ on:
 
 env:
   MIX_ENV: test
-  PR_DETAILS: ${{ github.event }}
+  PR_DETAILS: ${{ toJSON(github.event) }}
 
 jobs:
   slt:
