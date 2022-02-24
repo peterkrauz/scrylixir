@@ -22,4 +22,4 @@ jobs:
         uses: peterkrauz/search-linear-ticket-action@v0.0.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EVENT_DETAILS: ${{ toJSON(github.event) }}
+          EVENT_DETAILS: ${{ toJSON(github) }}
