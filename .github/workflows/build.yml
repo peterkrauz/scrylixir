@@ -23,10 +23,5 @@ jobs:
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
 
-      - name: Print stuff
-        run: |
-          # echo $PR_DETAILS
-          echo $GITHUB_REF
-
       - name: Search linear ticket
         uses: peterkrauz/search-linear-ticket-action@v0.0.2
