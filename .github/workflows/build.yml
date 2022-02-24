@@ -8,6 +8,7 @@ on:
 
 env:
   MIX_ENV: test
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
   slt:
@@ -29,6 +30,10 @@ jobs:
           # echo ::set-env name=PULL_REQUEST_NUMBER::$(echo $GITHUB_REF | awk -F / '{print $3}')
           # echo ::set-env name=REPOSITORY_NAME::$(echo $GITHUB_REF | awk -F / '{print $2}')
         shell: bash
+
+      - name: Print stuff
+        run: |
+          echo $STUFF
 
       # - name: Dump more stuff
       #   run: echo '${{ toJSON($GITHUB_REF) }}'
