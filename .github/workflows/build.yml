@@ -25,7 +25,7 @@ jobs:
 
       - name: Print stuff
         run: |
-          echo $PR_DETAILS
+          # echo $PR_DETAILS
           echo $GITHUB_REF
 
       - name: Search linear ticket
