@@ -189,4 +189,7 @@ defmodule Scryfall.Card do
 
   @spec random :: t
   def random, do: fetch_resource(url: base_url() <> "/random", to: %__MODULE__{})
+
+  @spec get_by(id: String.t()) :: t
+  def get_by(id: id), do: fetch_resource(url: base_url() <> "/#{id}", to: %__MODULE__{})
 end
