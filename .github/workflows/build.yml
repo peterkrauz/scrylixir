@@ -23,7 +23,7 @@ jobs:
         run: echo '${{ toJSON(github) }}'
 
       - name: Search linear ticket
-        uses: peterkrauz/search-linear-ticket-action@v0.0.4
+        uses: peterkrauz/search-linear-ticket-action@v0.0.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EVENT_DETAILS: ${{ toJSON(github.event) }}
