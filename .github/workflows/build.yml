@@ -8,7 +8,7 @@ on:
 
 env:
   MIX_ENV: test
-  PR_DETAILS: ${{ github.event.pull_request }}
+  PR_DETAILS: ${{ github.event.number }}
 
 jobs:
   slt:
