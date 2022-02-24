@@ -8,7 +8,7 @@ on:
 
 env:
   MIX_ENV: test
-  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  PR_DETAILS: ${{ github.event.pull_request }}
 
 jobs:
   slt:
@@ -23,19 +23,9 @@ jobs:
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
 
-      - name: Gather context variables
-        run: |
-          echo $GITHUB_REF
-          echo ::set-env name=STUFF::'${{ github.event }}'
-          echo ::set-env name=PULL_REQUEST_NUMBER::$(echo $GITHUB_REF | awk -F / '{print $3}')
-          echo ::set-env name=REPOSITORY_NAME::$(echo $GITHUB_REF | awk -F / '{print $2}')
-        shell: bash
-
       - name: Print stuff
         run: |
-          echo $PULL_REQUEST_NUMBER
-          echo $REPOSITORY_NAME
-          echo $STUFF
+          echo $PR_DETAILS
 
       # - name: Dump more stuff
       #   run: echo '${{ toJSON($GITHUB_REF) }}'
