@@ -8,7 +8,6 @@ on:
 
 env:
   MIX_ENV: test
-  PR_DETAILS: ${{ toJSON(github.event) }}
 
 jobs:
   slt:
@@ -24,4 +23,7 @@ jobs:
         run: echo '${{ toJSON(github) }}'
 
       - name: Search linear ticket
-        uses: peterkrauz/search-linear-ticket-action@v0.0.2
+        uses: peterkrauz/search-linear-ticket-action@v0.0.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EVENT_DETAILS: ${{ toJSON(github.event) }}
